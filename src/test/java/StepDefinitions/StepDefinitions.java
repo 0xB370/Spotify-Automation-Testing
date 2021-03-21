@@ -45,6 +45,7 @@ public class StepDefinitions {
     @And("I click on element (.*)")
     public void iClickOnElement(String locator) throws Exception {
         By SeleniumElem = SeleniumFunctions.getCompleteElement(locator);
+        functions.waitForElementClickable(locator);
         driver.findElement(SeleniumElem).click();
         log.info("Element " + locator + " clicked.");
     }
@@ -84,4 +85,19 @@ public class StepDefinitions {
         Select opt = functions.selectOption(element);
         opt.selectByIndex(index);
     }
+
+    /** Wait for an element to be present for a specific period of time */
+    @And("^I wait for element (.*) to be present$")
+    public void waitForElementPresent(String element) throws Exception
+    {
+        functions.waitForElementPresent(element);
+    }
+
+    /** Wait for an element to be visible for a specific period of time */
+    @And("^I wait element (.*?) to be visible$")
+    public void waitForElementVisible(String element) throws Exception
+    {
+        functions.waitForElementVisible(element);
+    }
+
 }
