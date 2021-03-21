@@ -10,5 +10,9 @@
   "Pass": {
     "GetFieldBy": "id",
     "ValueToFind": "password"
+  },
+  "Title": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//*[@id=\"__next\"]/main/div[2]/form/h2"
   }
 }
