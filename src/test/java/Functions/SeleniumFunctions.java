@@ -1,6 +1,5 @@
 package Functions;
 
-import StepDefinitions.StepDefinitions;
 import StepDefinitions.Hooks;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -134,13 +133,11 @@ public class SeleniumFunctions {
         }
     }
 
-    public void selectOptionDropdownByText(String element, String option) throws Exception
-    {
+    public Select selectOption(String element) throws Exception {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         log.info(String.format("Waiting Element: %s", element));
         Select opt = new Select(driver.findElement(SeleniumElement));
-        log.info("Select option: " + option + "by text");
-        opt.selectByVisibleText(option);
+        return opt;
     }
 
 }
