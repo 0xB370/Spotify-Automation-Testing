@@ -137,4 +137,14 @@ public class StepDefinitions {
         functions.clickJSElement(element);
     }
 
+    @And("^I scroll to element (.*)$")
+    public void iScrollToElement(String element) throws Exception {
+        functions.scrollPage(element);
+    }
+
+    @And("^I scroll to (top|bottom) of page$")
+    public void iScrollToTopOfPage(String to) throws Exception {
+        functions.scrollPage(to);
+    }
+
 }
