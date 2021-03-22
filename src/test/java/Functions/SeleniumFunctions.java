@@ -229,4 +229,11 @@ public class SeleniumFunctions {
         }
     }
 
+    public void pageHasLoaded (){
+        String GetActual = driver.getCurrentUrl();
+        System.out.println(String.format("Checking if %s page is loaded.", GetActual));
+        log.info(String.format("Checking if %s page is loaded.", GetActual));
+        new WebDriverWait(driver, EXPLICIT_TIMEOUT).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
 }
