@@ -30,6 +30,7 @@ public class StepDefinitions {
         log.info("Navigate to: " + url);
         driver.get(url);
         functions.pageHasLoaded();
+        functions.WindowsHandle("Principal");
     }
 
     @Given("^I navigate to (.*)$")
@@ -147,6 +148,28 @@ public class StepDefinitions {
     @And("^I scroll to (top|bottom) of page$")
     public void iScrollToTopOfPage(String to) throws Exception {
         functions.scrollPage(to);
+    }
+
+    @And("^I open new tab with URL (.*)$")
+    public void iOpenNewTabWithURL(String url) {
+        functions.OpenNewTabWithURL(url);
+    }
+
+    @When("I switch to new window")
+    public void iSwitchToNewWindow() {
+        System.out.println(driver.getWindowHandles());
+        for(String winHandle : driver.getWindowHandles()){
+            System.out.println(winHandle);
+            log.info("Switching to new window");
+            driver.switchTo().window(winHandle);
+        }
+    }
+
+    /** Switch to a new windows */
+    @When("^I go to (.*?) window$")
+    public void switchNewNamedWindow(String WindowsName)
+    {
+        functions.WindowsHandle(WindowsName);
     }
 
 }
