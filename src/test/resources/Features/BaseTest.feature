@@ -100,7 +100,36 @@ Feature: SpotifyRegisterTest
     And I wait 8 seconds
     Then I accept alert
 
-  @test
+  @screenshot
   Scenario: Take a ScreenShot
     Given I am in App main site
     And I take screenshot: HolyScreen
+
+  @assertions
+  Scenario: Assert contain text
+    Given I am in App main site
+    Then I load the DOM Information Spotify_registro.json
+    And I click on element Email
+    And I set Email with text mansilla_alberto@outlook.com
+    And I click on element Confirmation Email
+    Then Assert if Email Error contains text Este correo electrónico ya está conectado a una cuenta. Inicia sesión.
+    Then Assert if Email Error is equal to Este correo electrónico ya está conectado a una cuenta. Inicia sesión.
+
+  @assertions
+  Scenario: Assert not contain text
+    Given I am in App main site
+    Then I load the DOM Information Spotify_registro.json
+    And I click on element Email
+    And I set Email with text mansilla_alberto@outlook.com
+    And I click on element Confirmation Email
+    Then Check if Email Error NOT contains text COVID-19
+
+  @assertions
+  Scenario: Elements is/is not present
+    Given I am in App main site
+    Then I load the DOM Information Spotify_registro.json
+    And I click on element Email
+    Then Check if Email Error is NOT Displayed
+    And I set Email with text mansilla_alberto@outlook.com
+    And I click on element Confirmation Email
+    Then Assert if Email Error is Displayed
